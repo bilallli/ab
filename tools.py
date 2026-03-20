@@ -177,7 +177,8 @@ def search_wikipedia(query: str) -> str:
 def search_google(query: str) -> str:
     """Search the web using Google Custom Search API."""
     try:
-        api_key = os.getenv("GOOGLE_API_KEY")
+        # api_key = os.getenv("GOOGLE_API_KEY")
+        api_key = os.getenv("GOOGLE_SEARCH_KEY")
         cse_id = os.getenv("GOOGLE_CSE_ID")
         if not api_key or not cse_id:
             return "Google API keys not configured."
