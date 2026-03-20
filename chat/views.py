@@ -1,32 +1,3 @@
-# from django.shortcuts import render
-
-# # Create your views here.
-# from django.shortcuts import render
-# from django.http import JsonResponse
-# from django.views.decorators.csrf import csrf_exempt
-# import json
-# import sys
-# import os
-
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-# from agent import run_agent
-
-# def index(request):
-#     return render(request, 'chat/index.html')
-
-# @csrf_exempt
-# def ask(request):
-#     if request.method == 'POST':
-#         data = json.loads(request.body)
-#         user_message = data.get('message', '')
-#         if not user_message:
-#             return JsonResponse({'error': 'No message'}, status=400)
-#         try:
-#             answer = run_agent(user_message)
-#             return JsonResponse({'response': answer})
-#         except Exception as e:
-#             return JsonResponse({'error': str(e)}, status=500)
-#     return JsonResponse({'error': 'POST only'}, status=405)
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
