@@ -25,9 +25,12 @@ SECRET_KEY = "django-insecure-^vo9r1zzd!oi%$q5#wo*=ow4(+-*d)!@-9to!b5ild-tb27z2h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+]
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
