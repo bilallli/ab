@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Value Bazaar — Business Case 2024</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9993A;
+    --gold-light: #E8C06A;
+    --dark: #0F0D0A;
+    --dark2: #1A1712;
+    --dark3: #252018;
+    --cream: #F5EDD8;
+    --cream2: #EDE0C4;
+    --red: #C0392B;
+    --green: #27AE60;
+    --text: #E8DCC8;
+    --muted: #9A8F7A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,153,58,0.12) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(201,153,58,0.15);
+    border: 1px solid rgba(201,153,58,0.4);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 9vw, 110px);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--cream);
+    letter-spacing: -2px;
+    animation: fadeUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 28px auto 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.8s 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+    margin-top: 6px;
+  }
+
+  .divider-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(201,153,58,0.3);
+    align-self: center;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 32px;
+  }
+
+  /* DIVIDER */
+  .full-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,153,58,0.3), transparent);
+    margin: 0;
+  }
+
+  /* CONCEPT SECTION */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+    background: rgba(201,153,58,0.1);
+    border: 1px solid rgba(201,153,58,0.1);
+  }
+
+  .concept-card {
+    background: var(--dark2);
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .concept-card:hover { background: var(--dark3); }
+
+  .concept-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .concept-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--cream);
+    margin-bottom: 10px;
+  }
+
+  .concept-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* STORE NAME */
+  .name-section {
+    background: var(--dark2);
+    border: 1px solid rgba(201,153,58,0.15);
+    padding: 60px;
+    text-align: center;
+    position: relative;
+  }
+
+  .name-options {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .name-tag {
+    background: var(--dark3);
+    border: 1px solid rgba(201,153,58,0.2);
+    padding: 16px 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--cream);
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .name-tag.featured {
+    border-color: var(--gold);
+    background: rgba(201,153,58,0.1);
+    color: var(--gold);
+  }
+
+  .name-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+  .name-tag .note {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+
+  /* FINANCIALS */
+  .finance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(201,153,58,0.08);
+    border: 1px solid rgba(201,153,58,0.1);
+    margin-top: 40px;
+  }
+
+  .fin-card {
+    background: var(--dark2);
+    padding: 32px;
+    text-align: center;
+  }
+
+  .fin-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .fin-amount.green { color: var(--green); }
+  .fin-amount.gold { color: var(--gold); }
+  .fin-amount.red { color: var(--red); }
+
+  .fin-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .fin-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    display: block;
+  }
+
+  /* TABLE */
+  .cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 14px;
+  }
+
+  .cost-table thead th {
+    background: rgba(201,153,58,0.12);
+    color: var(--gold);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(201,153,58,0.2);
+  }
+
+  .cost-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.2s;
+  }
+
+  .cost-table tbody tr:hover { background: rgba(201,153,58,0.04); }
+
+  .cost-table td {
+    padding: 14px 20px;
+    color: var(--text);
+  }
+
+  .cost-table td:last-child {
+    font-family: 'DM Mono', monospace;
+    color: var(--gold);
+    text-align: right;
+  }
+
+  .cost-table tfoot td {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(201,153,58,0.3);
+    font-weight: 600;
+    color: var(--cream);
+    font-size: 15px;
+  }
+
+  .cost-table tfoot td:last-child {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-align: right;
+  }
+
+  /* PRODUCT CATEGORIES */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(201,153,58,0.08);
+    margin-top: 40px;
+  }
+
+  .cat-item {
+    background: var(--dark2);
+    padding: 28px 20px;
+    text-align: center;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .cat-item:hover { background: var(--dark3); }
+
+  .cat-emoji { font-size: 28px; display: block; margin-bottom: 10px; }
+
+  .cat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .cat-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+  }
+
+  /* MARKETING */
+  .strategy-list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .strategy-item {
+    background: var(--dark2);
+    border-left: 3px solid var(--gold);
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 20px;
+    align-items: start;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .strategy-item:hover {
+    background: var(--dark3);
+    border-color: var(--gold-light);
+  }
+
+  .strategy-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(201,153,58,0.25);
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .strategy-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .strategy-content p { color: var(--muted); font-size: 14px; }
+
+  .strategy-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .tag {
+    background: rgba(201,153,58,0.1);
+    border: 1px solid rgba(201,153,58,0.2);
+    color: var(--gold);
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    padding: 4px 10px;
+    letter-spacing: 1px;
+  }
+
+  /* LOCATION */
+  .location-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(201,153,58,0.08);
+    margin-top: 40px;
+  }
+
+  .loc-card {
+    background: var(--dark2);
+    padding: 40px;
+  }
+
+  .loc-card.recommended {
+    background: rgba(201,153,58,0.06);
+    border: 1px solid rgba(201,153,58,0.25);
+  }
+
+  .loc-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .loc-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .loc-points {
+    list-style: none;
+    margin-top: 16px;
+  }
+
+  .loc-points li {
+    color: var(--muted);
+    font-size: 14px;
+    padding: 6px 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  .loc-points li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* REVENUE PROJECTION */
+  .projection-bars {
+    margin-top: 40px;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    width: 80px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 36px;
+    background: var(--dark2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, rgba(201,153,58,0.5), var(--gold));
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--dark);
+    font-weight: 600;
+    animation: barGrow 1.2s ease forwards;
+    width: 0;
+  }
+
+  @keyframes barGrow {
+    to { width: var(--target-width); }
+  }
+
+  /* OPERATIONS */
+  .ops-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    background: rgba(201,153,58,0.08);
+    margin-top: 40px;
+  }
+
+  .ops-card {
+    background: var(--dark2);
+    padding: 32px;
+  }
+
+  .ops-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--cream);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(201,153,58,0.15);
+  }
+
+  .ops-list {
+    list-style: none;
+  }
+
+  .ops-list li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 5px 0;
+    display: flex;
+    gap: 8px;
+  }
+
+  .ops-list li::before {
+    content: '›';
+    color: var(--gold);
+  }
+
+  /* FOOTER */
+  .doc-footer {
+    background: var(--dark2);
+    border-top: 1px solid rgba(201,153,58,0.15);
+    padding: 48px 60px;
+    text-align: center;
+  }
+
+  .doc-footer p {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .doc-footer strong {
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: rgba(201,153,58,0.07);
+    border: 1px solid rgba(201,153,58,0.2);
+    border-left: 4px solid var(--gold);
+    padding: 28px 32px;
+    margin: 32px 0;
+  }
+
+  .highlight-box p {
+    color: var(--cream2);
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  /* SCROLL */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: rgba(201,153,58,0.3); border-radius: 2px; }
+
+  @media (max-width: 768px) {
+    .concept-grid, .finance-grid, .location-cards, .ops-grid { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    section { padding: 60px 20px; }
+    .hero { padding: 60px 20px; }
+    .hero-stats { gap: 20px; }
+    .divider-line { display: none; }
+    .name-section { padding: 40px 20px; }
+    .cost-table { font-size: 12px; }
+    .cost-table td, .cost-table thead th { padding: 10px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">Business Case — Lahore, Pakistan · 2024</div>
+  <h1>
+    Value<br>
+    <span>Bazaar</span>
+  </h1>
+  <p class="hero-sub">A premium dollar-store concept for Lahore's posh residential communities — where smart shopping meets everyday luxury.</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num">$1–$3</span>
+      <span class="stat-label">Price Range</span>
+    </div>
+    <div class="divider-line"></div>
+    <div class="stat-item">
+      <span class="stat-num">2,000+</span>
+      <span class="stat-label">SKUs Planned</span>
+    </div>
+    <div class="divider-line"></div>
+    <div class="stat-item">
+      <span class="stat-num">18 mo</span>
+      <span class="stat-label">Break-Even</span>
+    </div>
+    <div class="divider-line"></div>
+    <div class="stat-item">
+      <span class="stat-num">35%+</span>
+      <span class="stat-label">Target Margin</span>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<!-- CONCEPT -->
+<section>
+  <p class="section-label">01 — The Concept</p>
+  <h2>Smart Value in<br>Premium Packaging</h2>
+  <p style="color: var(--muted); max-width: 640px; font-size: 16px;">Pakistan's upper-middle class wants value without compromise. This is a first-of-its-kind organised dollar-store format in Lahore's elite gated communities — offering everything from kitchen essentials to decorative pieces, all priced between Rs.280 and Rs.850.</p>
+
+  <div class="concept-grid">
+    <div class="concept-card">
+      <span class="concept-icon">💡</span>
+      <h3>The Gap in the Market</h3>
+      <p>Lahore's posh residents over-pay at Hyperstar or Packages Mall for basic household items. There is no organised, well-curated "everything for a dollar" store in Lake City or Bahria Town. This is a white space.</p>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">🎯</span>
+      <h3>The Value Proposition</h3>
+      <p>Curated, aesthetically presented products at fixed low prices. The thrill of the "dollar store hunt" combined with the trust of a clean, organised retail environment. Quality perception through presentation.</p>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">📦</span>
+      <h3>Vendor Advantage</h3>
+      <p>With existing vendor relationships for good-quality items, you have a sourcing edge. Lower COGS means higher margins than competitors. Strong vendor network = ability to refresh stock frequently.</p>
+    </div>
+    <div class="concept-card">
+      <span class="concept-icon">🏡</span>
+      <h3>Captive Audience</h3>
+      <p>Gated communities like Lake City and Bahria Town have dense, affluent, captive populations. Residents prefer not to travel far for everyday needs — your store becomes the go-to local stop.</p>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- STORE NAME -->
+<section>
+  <p class="section-label">02 — Brand Identity</p>
+  <h2>What to Call It</h2>
+  <div class="name-section">
+    <p style="color: var(--muted); margin-bottom: 8px; font-size: 14px;">Recommended store name options — choose one that resonates:</p>
+    <div class="name-options">
+      <div class="name-tag featured">
+        Value Bazaar
+        <span class="note">★ Top Pick — local + aspirational</span>
+      </div>
+      <div class="name-tag">
+        1 Rupay Wala
+        <span class="note">Catchy, vernacular, humorous</span>
+      </div>
+      <div class="name-tag">
+        The Dollar Store PK
+        <span class="note">Western cache, modern</span>
+      </div>
+      <div class="name-tag">
+        EverythingPK
+        <span class="note">Digital-friendly, brandable</span>
+      </div>
+      <div class="name-tag">
+        Smart Haul
+        <span class="note">Youth-targeted, social media ready</span>
+      </div>
+    </div>
+    <p style="color: var(--muted); font-size: 13px; margin-top: 24px; font-style: italic;">Register a social media handle on Instagram & TikTok on day one. Store design should be "Instagram-worthy" — drives free organic marketing.</p>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- LOCATION ANALYSIS -->
+<section>
+  <p class="section-label">03 — Location Strategy</p>
+  <h2>Where to Open</h2>
+  <p style="color: var(--muted); max-width: 620px;">Both locations offer strong foot traffic, but each has different dynamics. Here's the breakdown:</p>
+
+  <div class="location-cards">
+    <div class="loc-card recommended">
+      <span class="loc-badge">★ RECOMMENDED FIRST</span>
+      <h3>Bahria Town Lahore</h3>
+      <p style="color: var(--muted); font-size: 14px;">Higher population density, more middle-to-upper class families, strong community commercial activity. Lower rental costs than Lake City for equivalent footfall areas.</p>
+      <ul class="loc-points">
+        <li>Target: Grand Bazaar, Sector C/D commercial areas</li>
+        <li>Footfall: Very high, family-oriented demographics</li>
+        <li>Rental estimate: Rs. 80,000–150,000/month</li>
+        <li>Competition: Low — no organised dollar store format</li>
+        <li>Size needed: 1,000–1,500 sq ft minimum</li>
+        <li>Proximity to families = high repeat visits</li>
+      </ul>
+    </div>
+    <div class="loc-card">
+      <h3>Lake City Lahore</h3>
+      <p style="color: var(--muted); font-size: 14px;">More premium demographics, slightly smaller community. Higher average spend per customer but lower footfall. Good for a second store once proven.</p>
+      <ul class="loc-points">
+        <li>Target: Sector M-1 or M-7 commercial strips</li>
+        <li>Footfall: Moderate, more premium clientele</li>
+        <li>Rental estimate: Rs. 100,000–180,000/month</li>
+        <li>Competition: Negligible in this format</li>
+        <li>Best as: Second location after Bahria Town success</li>
+        <li>Higher basket size expected per customer</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- PRODUCT CATEGORIES -->
+<section>
+  <p class="section-label">04 — Product Mix</p>
+  <h2>What to Sell</h2>
+  <p style="color: var(--muted); max-width: 620px;">2,000+ SKUs across 10 core categories. Refresh 20% of stock monthly to encourage repeat visits. Mark each item clearly with a price tag so customers trust the pricing.</p>
+
+  <div class="cat-grid">
+    <div class="cat-item">
+      <span class="cat-emoji">🍳</span>
+      <div class="cat-name">Kitchen & Utensils</div>
+      <div class="cat-price">Rs.280–840</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🧦</span>
+      <div class="cat-name">Hosiery & Basics</div>
+      <div class="cat-price">Rs.280–560</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🍽️</span>
+      <div class="cat-name">Crockery & Tableware</div>
+      <div class="cat-price">Rs.280–840</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🧸</span>
+      <div class="cat-name">Toys & Kids</div>
+      <div class="cat-price">Rs.280–840</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">👕</span>
+      <div class="cat-name">Clothing & Accessories</div>
+      <div class="cat-price">Rs.560–840</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🕯️</span>
+      <div class="cat-name">Décor & Candles</div>
+      <div class="cat-price">Rs.280–840</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🧴</span>
+      <div class="cat-name">Personal Care</div>
+      <div class="cat-price">Rs.280–560</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🌿</span>
+      <div class="cat-name">Home & Seasonal</div>
+      <div class="cat-price">Rs.280–840</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">📚</span>
+      <div class="cat-name">Stationery & Office</div>
+      <div class="cat-price">Rs.280–560</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🔧</span>
+      <div class="cat-name">Hardware & Tools</div>
+      <div class="cat-price">Rs.280–840</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🐾</span>
+      <div class="cat-name">Pet Accessories</div>
+      <div class="cat-price">Rs.280–560</div>
+    </div>
+    <div class="cat-item">
+      <span class="cat-emoji">🎁</span>
+      <div class="cat-name">Gift & Giftwrap</div>
+      <div class="cat-price">Rs.280–840</div>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="margin-top: 32px;">
+    <p>💡 <strong style="color: var(--gold);">Pro Tip:</strong> Add a small "Premium Section" with items at Rs.840–1,400 ($5) near the counter. This upsell zone boosts average basket size without breaking the core value promise.</p>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- STARTUP COSTS -->
+<section>
+  <p class="section-label">05 — Financial Model</p>
+  <h2>Investment & Returns</h2>
+
+  <div class="finance-grid">
+    <div class="fin-card">
+      <span class="fin-amount red">Rs. 35–50L</span>
+      <span class="fin-label">Total Startup Cost</span>
+      <span class="fin-note">One-time investment to open</span>
+    </div>
+    <div class="fin-card">
+      <span class="fin-amount gold">Rs. 8–12L</span>
+      <span class="fin-label">Monthly Revenue Target</span>
+      <span class="fin-note">At 200–300 daily customers</span>
+    </div>
+    <div class="fin-card">
+      <span class="fin-amount green">Rs. 2.5–4L</span>
+      <span class="fin-label">Monthly Net Profit</span>
+      <span class="fin-note">After all expenses (~30–35% margin)</span>
+    </div>
+  </div>
+
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th>Startup Cost Item</th>
+        <th>Details</th>
+        <th>Est. Cost (PKR)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Shop Rent Deposit</td><td>3 months advance (Bahria Town)</td><td>3,00,000–4,50,000</td></tr>
+      <tr><td>Shopfitting & Interior</td><td>Shelving, display units, signage, lighting, paint</td><td>8,00,000–12,00,000</td></tr>
+      <tr><td>Initial Inventory</td><td>2,000+ SKUs, first stock fill</td><td>15,00,000–20,00,000</td></tr>
+      <tr><td>POS System & Tech</td><td>Cashier software, barcode scanner, receipt printer</td><td>1,00,000–1,50,000</td></tr>
+      <tr><td>Branding & Signage</td><td>Exterior sign, bags, tags, labels</td><td>1,50,000–2,00,000</td></tr>
+      <tr><td>Security & CCTV</td><td>4–6 camera setup, storage</td><td>80,000–1,20,000</td></tr>
+      <tr><td>Marketing (Launch)</td><td>Social media ads, flyers, influencers</td><td>1,00,000–1,50,000</td></tr>
+      <tr><td>Contingency Buffer</td><td>Unexpected expenses (10%)</td><td>3,00,000–4,00,000</td></tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2"><strong>TOTAL STARTUP INVESTMENT</strong></td>
+        <td>Rs. 33–47 Lakh</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <br>
+
+  <table class="cost-table">
+    <thead>
+      <tr>
+        <th>Monthly Running Cost</th>
+        <th>Details</th>
+        <th>Est. Cost (PKR)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Rent</td><td>Bahria Town commercial unit</td><td>1,00,000–1,50,000</td></tr>
+      <tr><td>Staff (3–4 people)</td><td>2 sales staff + 1 cashier + part-time helper</td><td>1,20,000–1,60,000</td></tr>
+      <tr><td>Utilities</td><td>Electricity, generator fuel, water</td><td>40,000–60,000</td></tr>
+      <tr><td>Inventory Restock</td><td>Monthly procurement</td><td>4,00,000–6,00,000</td></tr>
+      <tr><td>Marketing (ongoing)</td><td>Social media, WhatsApp, flyers</td><td>30,000–50,000</td></tr>
+      <tr><td>Miscellaneous</td><td>Packaging, repairs, fees</td><td>30,000–50,000</td></tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2"><strong>TOTAL MONTHLY EXPENSES</strong></td>
+        <td>Rs. 7.2 – 9.7 Lakh</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p style="color: var(--muted); font-size: 13px; margin-top: 16px; font-style: italic;">* Figures based on mid-2024 Lahore market estimates. USD/PKR rate of ~280 used for pricing reference. Adjust as exchange rate changes.</p>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- REVENUE PROJECTION -->
+<section>
+  <p class="section-label">06 — Revenue Projection</p>
+  <h2>Monthly Revenue Path</h2>
+  <p style="color: var(--muted); margin-bottom: 8px;">Based on avg. basket size of Rs. 600–800 per customer visit.</p>
+
+  <div class="projection-bars">
+    <div class="bar-row">
+      <span class="bar-label">Month 1</span>
+      <div class="bar-track">
+        <div class="bar-fill" style="--target-width: 35%; animation-delay: 0.1s">Rs. 3.5L</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Month 3</span>
+      <div class="bar-track">
+        <div class="bar-fill" style="--target-width: 52%; animation-delay: 0.2s">Rs. 5.5L</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Month 6</span>
+      <div class="bar-track">
+        <div class="bar-fill" style="--target-width: 72%; animation-delay: 0.3s">Rs. 8L</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Month 12</span>
+      <div class="bar-track">
+        <div class="bar-fill" style="--target-width: 88%; animation-delay: 0.4s">Rs. 10–12L</div>
+      </div>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">Month 18</span>
+      <div class="bar-track">
+        <div class="bar-fill" style="--target-width: 100%; animation-delay: 0.5s">Rs. 14–16L ✓ BEP</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p>📊 <strong style="color: var(--gold);">Break-Even Timeline:</strong> With disciplined cost control and strong launch marketing, you can recover your full investment in <strong style="color: var(--cream);">14–20 months</strong>. A busy month during Eid, back-to-school, or winter can accelerate this significantly.</p>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- MARKETING -->
+<section>
+  <p class="section-label">07 — Customer Acquisition</p>
+  <h2>How to Fill Your Store Every Day</h2>
+
+  <div class="strategy-list">
+    <div class="strategy-item">
+      <div class="strategy-num">01</div>
+      <div class="strategy-content">
+        <h3>Grand Opening Event</h3>
+        <p>Launch with a bang. Hire a popular local food stall for the day, offer the first 100 customers a "mystery bag" worth Rs.500 for free. Partner with local influencers 2 weeks before opening. A strong opening builds word-of-mouth that lasts months.</p>
+        <div class="strategy-tags">
+          <span class="tag">Day 1</span>
+          <span class="tag">Word of Mouth</span>
+          <span class="tag">Influencers</span>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num">02</div>
+      <div class="strategy-content">
+        <h3>Instagram & TikTok Presence</h3>
+        <p>Post daily "What's New" reels, unboxing videos, and "haul" content. TikTok haul culture is huge in Pakistan right now. Encourage customers to tag your store. Run monthly giveaways. Make the store itself photogenic — a neon sign, colourful displays, aesthetic checkout area.</p>
+        <div class="strategy-tags">
+          <span class="tag">Instagram</span>
+          <span class="tag">TikTok</span>
+          <span class="tag">UGC</span>
+          <span class="tag">Daily Content</span>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num">03</div>
+      <div class="strategy-content">
+        <h3>WhatsApp Community Broadcast</h3>
+        <p>Build a WhatsApp channel from day one. Send weekly "New Arrivals" pictures. Bahria Town and Lake City residents are already in WhatsApp groups — ask admins permission to post. Offer exclusive WhatsApp-only deals. This is free and incredibly effective in Pakistan.</p>
+        <div class="strategy-tags">
+          <span class="tag">WhatsApp</span>
+          <span class="tag">Zero Cost</span>
+          <span class="tag">Community</span>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num">04</div>
+      <div class="strategy-content">
+        <h3>Loyalty Stamp Card</h3>
+        <p>Simple punch card: Buy 10 times, get Rs.500 worth free. This drives repeat visits and makes customers feel valued. Studies show loyalty programs increase repeat visit rate by 30–40% even in informal retail. Keep it simple — a physical card works perfectly.</p>
+        <div class="strategy-tags">
+          <span class="tag">Retention</span>
+          <span class="tag">Repeat Visits</span>
+          <span class="tag">Low Cost</span>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num">05</div>
+      <div class="strategy-content">
+        <h3>Seasonal & Festive Campaigns</h3>
+        <p>Create themed sections for Eid, back-to-school, winter, and wedding season. "Eid Gift Hampers under Rs.2,500" or "Back to School Kit" bundles drive impulse buying. Decorate the store for each occasion — it creates excitement and urgency to visit.</p>
+        <div class="strategy-tags">
+          <span class="tag">Eid</span>
+          <span class="tag">Seasonal</span>
+          <span class="tag">Bundling</span>
+          <span class="tag">Urgency</span>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num">06</div>
+      <div class="strategy-content">
+        <h3>School & Masjid Partnerships</h3>
+        <p>Partner with nearby schools to be the go-to stationery & supplies stop. Donate small items to masjid events or community iftar in Ramadan. These soft marketing moves build brand goodwill and word-of-mouth in tight-knit community environments far better than paid ads.</p>
+        <div class="strategy-tags">
+          <span class="tag">Community</span>
+          <span class="tag">Schools</span>
+          <span class="tag">Brand Goodwill</span>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num">07</div>
+      <div class="strategy-content">
+        <h3>Referral Discount Program</h3>
+        <p>"Bring a friend and both get Rs.100 off your next purchase." Print referral cards at checkout. This turns every happy customer into a salesperson. In close-knit gated communities where neighbours talk, this spreads like wildfire. Cost is minimal vs. acquisition value.</p>
+        <div class="strategy-tags">
+          <span class="tag">Referral</span>
+          <span class="tag">Viral Growth</span>
+          <span class="tag">Low Budget</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- OPERATIONS -->
+<section>
+  <p class="section-label">08 — Operations Plan</p>
+  <h2>Running It Well</h2>
+
+  <div class="ops-grid">
+    <div class="ops-card">
+      <h3>🏪 Store Setup</h3>
+      <ul class="ops-list">
+        <li>Minimum 1,000 sq ft retail floor</li>
+        <li>Open, aisle-based layout</li>
+        <li>Clear category signage overhead</li>
+        <li>Bright LED lighting (makes products pop)</li>
+        <li>Instagrammable checkout/selfie wall</li>
+        <li>Separate gift-wrapping corner</li>
+        <li>Clean, air-conditioned environment</li>
+        <li>Safe, covered storage for stock</li>
+      </ul>
+    </div>
+    <div class="ops-card">
+      <h3>👥 Staffing</h3>
+      <ul class="ops-list">
+        <li>1 Store Manager (owner or trusted)</li>
+        <li>2 Sales Associates (floor helpers)</li>
+        <li>1 Cashier (trained, friendly)</li>
+        <li>Part-time stock handler (evenings)</li>
+        <li>Staff in clean uniform + name badge</li>
+        <li>Weekly product knowledge training</li>
+        <li>Incentive for upselling premium zone</li>
+        <li>Open: 10am–10pm (peak: evenings)</li>
+      </ul>
+    </div>
+    <div class="ops-card">
+      <h3>📦 Inventory & Vendors</h3>
+      <ul class="ops-list">
+        <li>Source from your existing vendors first</li>
+        <li>Also explore: Jodia Bazaar, Anarkali</li>
+        <li>Import channel: China via Alibaba/agents</li>
+        <li>Refresh 15–20% of stock monthly</li>
+        <li>Track slow vs. fast movers weekly</li>
+        <li>Never let shelves look empty</li>
+        <li>Seasonal stock ordered 6 weeks ahead</li>
+        <li>Maintain 4-week buffer stock always</li>
+      </ul>
+    </div>
+    <div class="ops-card">
+      <h3>💳 Technology</h3>
+      <ul class="ops-list">
+        <li>POS software (StoreHippo or local)</li>
+        <li>Barcode labels on all products</li>
+        <li>Easypaisa / JazzCash QR at counter</li>
+        <li>Accept all payment methods</li>
+        <li>Basic Excel inventory tracker (start)</li>
+        <li>CCTV with remote viewing app</li>
+        <li>WhatsApp Business account</li>
+        <li>Google Maps listing from day one</li>
+      </ul>
+    </div>
+    <div class="ops-card">
+      <h3>📊 Metrics to Track</h3>
+      <ul class="ops-list">
+        <li>Daily customer count</li>
+        <li>Average basket size (target: Rs.650+)</li>
+        <li>Top 20 best-selling SKUs weekly</li>
+        <li>Monthly gross & net profit</li>
+        <li>Stock turnover rate (target: 3x/month)</li>
+        <li>New vs returning customer ratio</li>
+        <li>Social media follower growth</li>
+        <li>WhatsApp channel subscriber count</li>
+      </ul>
+    </div>
+    <div class="ops-card">
+      <h3>⚡ Risks & Mitigation</h3>
+      <ul class="ops-list">
+        <li>PKR devaluation → review prices quarterly</li>
+        <li>Power cuts → backup UPS + inverter</li>
+        <li>Slow months → push WhatsApp deals</li>
+        <li>Theft → CCTV + staff vigilance + layout</li>
+        <li>Competition copies you → stay 3 months ahead</li>
+        <li>Oversaturation → expand before others can</li>
+        <li>Cash flow gaps → keep 2-month buffer cash</li>
+        <li>Bad vendor quality → test samples first</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- GROWTH ROADMAP -->
+<section>
+  <p class="section-label">09 — Scale-Up Plan</p>
+  <h2>From One Store to a Chain</h2>
+  <p style="color: var(--muted); max-width: 640px; margin-bottom: 32px;">Once proven, this model is highly replicable. Here's a 3-year growth path:</p>
+
+  <div class="strategy-list">
+    <div class="strategy-item">
+      <div class="strategy-num" style="color: rgba(39,174,96,0.4);">Y1</div>
+      <div class="strategy-content">
+        <h3>Year 1 — Prove the Model</h3>
+        <p>Open Store 1 in Bahria Town. Hit break-even. Build brand, social following, and loyal customer base. Document everything: what sells, what doesn't, what customers ask for. Refine operations. By month 12, you should have a playbook for opening Store 2.</p>
+        <div class="strategy-tags"><span class="tag">1 Store</span><span class="tag">Bahria Town</span><span class="tag">Proof of Concept</span></div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num" style="color: rgba(201,153,58,0.4);">Y2</div>
+      <div class="strategy-content">
+        <h3>Year 2 — Duplicate & Expand</h3>
+        <p>Open Store 2 in Lake City using profit from Store 1. Consider DHA Phase 6 or Gulberg III for Store 3. Launch a simple online catalogue on Instagram/WhatsApp for same-day delivery within each community. Hire a dedicated social media manager.</p>
+        <div class="strategy-tags"><span class="tag">3 Stores</span><span class="tag">Lake City</span><span class="tag">DHA</span><span class="tag">Online Orders</span></div>
+      </div>
+    </div>
+    <div class="strategy-item">
+      <div class="strategy-num" style="color: rgba(192,57,43,0.4);">Y3</div>
+      <div class="strategy-content">
+        <h3>Year 3 — Franchise or Brand Play</h3>
+        <p>With 3–5 stores running profitably, consider a franchise model to expand to Islamabad, Karachi, and Faisalabad without heavy capital outlay. Alternatively, partner with a mall (Packages Mall, Emporium) for a flagship store. This is now a brand, not just a shop.</p>
+        <div class="strategy-tags"><span class="tag">5+ Stores</span><span class="tag">Franchise</span><span class="tag">National Brand</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <strong>Value Bazaar — Business Case</strong>
+  <p>Prepared for: Private Use · Lahore, Pakistan · 2024</p>
+  <p style="margin-top: 12px; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.6;">This business case is based on current Lahore market conditions. All financial projections are estimates — actual results will vary based on location, execution, and market timing. The fundamentals of this opportunity are strong.</p>
+  <p style="margin-top: 20px; color: var(--gold); font-family: 'Playfair Display', serif; font-size: 16px;">"Lahore is ready for this. Be the first."</p>
+</div>
+
+</body>
+</html>
